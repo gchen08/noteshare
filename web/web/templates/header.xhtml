@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <nav>
+        <ul>
+            <li class="nav-item">
+                <h:link outcome="/index" value="Home"/>
+            </li>
+            <li class="nav-item">
+                <h:link outcome="/notelist" value="Notes"/>
+            </li>
+            <h:panelGroup rendered="#{userBean.currentUser ne null}">
+                <li class="nav-item">
+                    <h:link outcome="/settings" value="Settings"/>
+                </li>
+            </h:panelGroup>
+            <li class="nav-item">
+                <h:link outcome="/about" value="About"/>
+            </li>
+        </ul>
+    </nav>
+</ui:composition>

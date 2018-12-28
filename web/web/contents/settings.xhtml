@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputStylesheet library="css" name="login.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <h:panelGroup rendered="#{userBean.currentUser eq null}">
+                    <div class="note-post">
+                        <p class="note-content">
+                            <h:outputText value="请先登录"/>
+                        </p>
+                    </div>
+                </h:panelGroup>
+
+
+                <!-- 修改个人信息块 -->
+                <h:panelGroup rendered="#{userBean.currentUser ne null}">
+                    <div class="login">
+                        <h2 class="login-header">修改信息</h2>
+
+                        <h:form styleClass="login-container">
+                            <p>
+                                <h:inputText
+                                        disabled="true"
+                                        id="username"
+                                        styleClass="login-input-text"
+                                        value="#{userBean.currentUser.username}">
+                                </h:inputText>
+                            </p>
+
+                            <p>
+                                <h:inputSecret
+                                        id="current-password"
+                                        styleClass="login-input-text"
+                                        a:placeholder="Current Password"
+                                        a:required="true"
+                                        value="#{userBean.currentPassword}">
+                                </h:inputSecret>
+                            </p>
+
+                            <p>
+                                <h:inputSecret
+                                        id="new-password"
+                                        styleClass="login-input-text"
+                                        a:placeholder="New Password"
+                                        value="#{userBean.newPassword}">
+                                    <f:validator validatorId="passwordValidator"/>
+                                </h:inputSecret>
+                            </p>
+                            <h:message for="new-password" style="color: coral"/>
+
+                            <p>
+                                <h:inputText
+                                        id="email"
+                                        styleClass="login-input-text"
+                                        a:placeholder="#{userBean.currentUser.email}"
+                                        value="#{userBean.newEmail}">
+                                    <f:validator validatorId="emailValidator"/>
+                                </h:inputText>
+                            </p>
+                            <h:message for="email" style="color: coral"/>
+
+                            <h:outputText
+                                    style="color: coral"
+                                    value="#{userBean.errorMsg}"/>
+                            <p>
+                                <h:commandLink
+                                        styleClass="login-input-submit"
+                                        value="更新"
+                                        action="#{userBean.update}"/>
+                            </p>
+
+                        </h:form>
+                    </div>
+                </h:panelGroup>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

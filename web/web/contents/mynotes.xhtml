@@ -1,0 +1,271 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputStylesheet library="css" name="pagination.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <h:panelGroup rendered="#{userBean.currentUser eq null}">
+                    <div class="note-post">
+                        <p class="note-content">
+                            <h:outputText value="请先登录"/>
+                        </p>
+                    </div>
+                </h:panelGroup>
+
+
+                <h:form rendered="#{userBean.currentUser ne null}">
+
+                    <!-- 无笔记 -->
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() le 0}">
+                        <div class="note-post">
+                            <p class="note-content">
+                                <h:outputText value="您还没有写过笔记"/>
+                            </p>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- 每页显示五篇笔记 -->
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() gt 0}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{userNoteListBean.noteList.get(0).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Last edited @ #{userNoteListBean.noteList.get(0).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{userNoteListBean.noteList.get(0).shortSummary}"/>
+                            </p>
+                            <div>
+                                <h:link
+                                        styleClass="post-link"
+                                        outcome="/note?id=#{userNoteListBean.noteList.get(0).id}"
+                                        value="View"/>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.update}"
+                                        value="Edit">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(0).id}"/>
+                                </h:commandLink>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.delete}"
+                                        value="Delete">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(0).id}"/>
+                                </h:commandLink>
+                                <h:outputText
+                                        rendered="#{userNoteListBean.noteList.get(0).state eq 0}"
+                                        styleClass="post-state"
+                                        value="【Draft】"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() gt 1}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{userNoteListBean.noteList.get(1).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Last edited @ #{userNoteListBean.noteList.get(1).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{userNoteListBean.noteList.get(1).shortSummary}"/>
+                            </p>
+                            <div>
+                                <h:link
+                                        styleClass="post-link"
+                                        outcome="/note?id=#{userNoteListBean.noteList.get(1).id}"
+                                        value="View"/>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.update}"
+                                        value="Edit">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(1).id}"/>
+                                </h:commandLink>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.delete}"
+                                        value="Delete">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(1).id}"/>
+                                </h:commandLink>
+                                <h:outputText
+                                        rendered="#{userNoteListBean.noteList.get(1).state eq 0}"
+                                        styleClass="post-state"
+                                        value="【Draft】"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() gt 2}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{userNoteListBean.noteList.get(2).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Last edited @ #{userNoteListBean.noteList.get(2).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{userNoteListBean.noteList.get(2).shortSummary}"/>
+                            </p>
+                            <div>
+                                <h:link
+                                        styleClass="post-link"
+                                        outcome="/note?id=#{userNoteListBean.noteList.get(2).id}"
+                                        value="View"/>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.update}"
+                                        value="Edit">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(2).id}"/>
+                                </h:commandLink>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.delete}"
+                                        value="Delete">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(2).id}"/>
+                                </h:commandLink>
+                                <h:outputText
+                                        rendered="#{userNoteListBean.noteList.get(2).state eq 0}"
+                                        styleClass="post-state"
+                                        value="【Draft】"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() gt 3}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{userNoteListBean.noteList.get(3).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Last edited @ #{userNoteListBean.noteList.get(3).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{userNoteListBean.noteList.get(3).shortSummary}"/>
+                            </p>
+                            <div>
+                                <h:link
+                                        styleClass="post-link"
+                                        outcome="/note?id=#{userNoteListBean.noteList.get(3).id}"
+                                        value="View"/>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.update}"
+                                        value="Edit">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(3).id}"/>
+                                </h:commandLink>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.delete}"
+                                        value="Delete">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(3).id}"/>
+                                </h:commandLink>
+                                <h:outputText
+                                        rendered="#{userNoteListBean.noteList.get(3).state eq 0}"
+                                        styleClass="post-state"
+                                        value="【Draft】"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{userNoteListBean.noteList.size() gt 4}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{userNoteListBean.noteList.get(4).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Last edited @ #{userNoteListBean.noteList.get(4).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{userNoteListBean.noteList.get(4).shortSummary}"/>
+                            </p>
+                            <div>
+                                <h:link
+                                        styleClass="post-link"
+                                        outcome="/note?id=#{userNoteListBean.noteList.get(4).id}"
+                                        value="View"/>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.update}"
+                                        value="Edit">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(4).id}"/>
+                                </h:commandLink>
+                                <h:commandLink
+                                        styleClass="post-link"
+                                        action="#{postBean.delete}"
+                                        value="Delete">
+                                    <f:param name="id" value="#{userNoteListBean.noteList.get(4).id}"/>
+                                </h:commandLink>
+                                <h:outputText
+                                        rendered="#{userNoteListBean.noteList.get(4).state eq 0}"
+                                        styleClass="post-state"
+                                        value="【Draft】"/>
+                            </div>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- 导航部分-->
+                    <div class="pagination">
+                        <ul>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="First"
+                                        action="#{userNoteListBean.pageFirst}"
+                                        disabled="#{userNoteListBean.firstRow eq 0}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Pre"
+                                        action="#{userNoteListBean.pagePrevious}"
+                                        disabled="#{userNoteListBean.firstRow eq 0}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Next"
+                                        action="#{userNoteListBean.pageNext}"
+                                        disabled="#{userNoteListBean.firstRow + userNoteListBean.rowsPerPage ge userNoteListBean.totalRows}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Last"
+                                        action="#{userNoteListBean.pageLast}"
+                                        disabled="#{userNoteListBean.firstRow + userNoteListBean.rowsPerPage ge userNoteListBean.totalRows}"/>
+                            </li>
+                        </ul>
+                        <p>
+                            <h:outputText
+                                    value="Page #{userNoteListBean.currentPage} / #{userNoteListBean.totalPages}"/>
+                        </p>
+                    </div>
+
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

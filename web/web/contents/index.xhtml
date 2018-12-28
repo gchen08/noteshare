@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+>
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+                <h:form>
+                    <!-- 无笔记 -->
+                    <h:panelGroup rendered="#{noteListBean.topNoteList.size() le 0}">
+                        <div class="note-post">
+                            <p class="note-content">
+                                <h:outputText value="暂无笔记"/>
+                            </p>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- 显示最新三篇笔记 -->
+                    <h:panelGroup rendered="#{noteListBean.topNoteList.size() gt 0}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.topNoteList.get(0).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.topNoteList.get(0).author.username} @ #{noteListBean.topNoteList.get(0).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.topNoteList.get(0).longSummary}"/>
+                            </p>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.topNoteList.get(0).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.topNoteList.size() gt 1}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.topNoteList.get(1).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.topNoteList.get(1).author.username} @ #{noteListBean.topNoteList.get(1).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.topNoteList.get(1).longSummary}"/>
+                            </p>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.topNoteList.get(1).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.topNoteList.size() gt 2}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.topNoteList.get(2).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.topNoteList.get(2).author.username} @ #{noteListBean.topNoteList.get(2).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.topNoteList.get(2).longSummary}"/>
+                            </p>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.topNoteList.get(2).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                </h:form>
+            </div>
+        </div>
+    </div>
+</ui:composition>

@@ -1,0 +1,69 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputStylesheet library="css" name="login.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <!-- 注册块 -->
+                <div class="login">
+                    <h2 class="login-header">注册</h2>
+                    <h:form styleClass="login-container">
+
+
+                        <p>
+                            <h:inputText
+                                    id="username"
+                                    styleClass="login-input-text"
+                                    a:placeholder="Username"
+                                    a:required="true"
+                                    value="#{userBean.user.username}">
+                                <f:validator validatorId="usernameValidator"/>
+                            </h:inputText>
+                        </p>
+                        <h:message for="username" style="color: coral"/>
+
+                        <p>
+                            <h:inputSecret
+                                    id="password"
+                                    styleClass="login-input-text"
+                                    a:placeholder="Password"
+                                    a:required="true"
+                                    value="#{userBean.user.password}">
+                                <f:validator validatorId="passwordValidator"/>
+                            </h:inputSecret>
+                        </p>
+                        <h:message for="password" style="color: coral"/>
+
+                        <p>
+                            <h:inputText
+                                    id="email"
+                                    styleClass="login-input-text"
+                                    a:placeholder="Email"
+                                    a:required="true"
+                                    value="#{userBean.user.email}">
+                                <f:validator validatorId="emailValidator"/>
+                            </h:inputText>
+                        </p>
+                        <h:message for="email" style="color: coral"/>
+
+
+                        <p>
+                            <h:commandLink
+                                    styleClass="login-input-submit"
+                                    value="注册"
+                                    action="#{userBean.register}"/>
+                        </p>
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

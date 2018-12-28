@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:outputStylesheet library="css" name="post.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <h:panelGroup rendered="#{userBean.currentUser eq null}">
+                    <div class="note-post">
+                        <p class="note-content">
+                            <h:outputText value="请先登录"/>
+                        </p>
+                    </div>
+                </h:panelGroup>
+
+                <!-- 笔记发布块 -->
+                <h:panelGroup rendered="#{userBean.currentUser ne null}">
+                    <div class="post">
+                        <h2 class="post-header">发布笔记</h2>
+
+                        <div class="post-container">
+                            <h:form id="post-form">
+                                <h:outputLabel
+                                        styleClass="post-label"
+                                        for="title"
+                                        value="标题"/>
+
+                                <h:inputText
+                                        styleClass="post-input"
+                                        id="title"
+                                        a:required="true"
+                                        value="#{postBean.title}">
+                                </h:inputText>
+
+
+                                <h:outputLabel
+                                        styleClass="post-label"
+                                        for="content"
+                                        value="内容"/>
+
+                                <h:inputTextarea
+                                        styleClass="post-input-textarea"
+                                        id="content"
+                                        a:required="true"
+                                        value="#{postBean.content}">
+                                </h:inputTextarea>
+
+                                <ul class="post-ul">
+                                    <li>
+                                        <h:commandLink
+                                                styleClass="post-input-submit"
+                                                value="发布笔记"
+                                                action="#{postBean.post(false)}"/>
+                                    </li>
+                                    <h:panelGroup rendered="#{postBean.state eq 0}">
+                                        <li>
+                                            <h:commandLink
+                                                    styleClass="post-input-submit"
+                                                    value="保存草稿"
+                                                    action="#{postBean.post(true)}"/>
+                                        </li>
+                                    </h:panelGroup>
+                                    <li>
+                                        <h:link
+                                                styleClass="post-input-submit"
+                                                value="取消"
+                                                outcome="/mynotes"/>
+                                    </li>
+                                </ul>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </div>
+        </div>
+    </div>
+</ui:composition>

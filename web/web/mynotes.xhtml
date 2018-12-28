@@ -1,0 +1,14 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        template="templates/layout.xhtml">
+
+    <!-- 用户笔记列表页标题 -->
+    <ui:define name="title">NoteShare - 用户笔记</ui:define>
+
+    <!-- 用户笔记列表页内容 -->
+    <ui:define name="content">
+        <ui:include src="contents/mynotes.xhtml"/>
+    </ui:define>
+
+</ui:composition>

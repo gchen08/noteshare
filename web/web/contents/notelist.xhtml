@@ -1,0 +1,190 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:outputStylesheet library="css" name="pagination.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <h:form>
+
+                    <!-- 无笔记 -->
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() le 0}">
+                        <div class="note-post">
+                            <p class="note-content">
+                                <h:outputText value="暂无笔记"/>
+                            </p>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- 每页显示五篇笔记 -->
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() gt 0}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.noteList.get(0).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.noteList.get(0).author.username} @ #{noteListBean.noteList.get(0).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.noteList.get(0).shortSummary}"/>
+                            </p>
+                            <div class="note-info">
+                                <h:outputText
+                                        value="浏览数: #{noteListBean.noteList.get(0).viewCount}"/>
+                            </div>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.noteList.get(0).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() gt 1}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.noteList.get(1).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.noteList.get(1).author.username} @ #{noteListBean.noteList.get(1).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.noteList.get(1).shortSummary}"/>
+                            </p>
+                            <div class="note-info">
+                                <h:outputText
+                                        value="浏览数: #{noteListBean.noteList.get(1).viewCount}"/>
+                            </div>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.noteList.get(1).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() gt 2}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.noteList.get(2).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.noteList.get(2).author.username} @ #{noteListBean.noteList.get(2).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.noteList.get(2).shortSummary}"/>
+                            </p>
+                            <div class="note-info">
+                                <h:outputText
+                                        value="浏览数: #{noteListBean.noteList.get(2).viewCount}"/>
+                            </div>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.noteList.get(2).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() gt 3}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.noteList.get(3).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.noteList.get(3).author.username} @ #{noteListBean.noteList.get(3).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.noteList.get(3).shortSummary}"/>
+                            </p>
+                            <div class="note-info">
+                                <h:outputText
+                                        value="浏览数: #{noteListBean.noteList.get(3).viewCount}"/>
+                            </div>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.noteList.get(3).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{noteListBean.noteList.size() gt 4}">
+                        <div class="note-post">
+                            <h1 class="note-title">
+                                <h:outputText value="#{noteListBean.noteList.get(4).title}"/>
+                            </h1>
+                            <h2 class="author">
+                                <h:outputText
+                                        value="Posted by #{noteListBean.noteList.get(4).author.username} @ #{noteListBean.noteList.get(4).formattedPublishTime}"/>
+                            </h2>
+                            <p class="note-content">
+                                <h:outputText
+                                        styleClass="pre-formatted"
+                                        value="#{noteListBean.noteList.get(4).shortSummary}"/>
+                            </p>
+                            <div class="note-info">
+                                <h:outputText
+                                        value="浏览数: #{noteListBean.noteList.get(4).viewCount}"/>
+                            </div>
+                            <h:link
+                                    styleClass="post-link"
+                                    outcome="/note?id=#{noteListBean.noteList.get(4).id}"
+                                    value="Read More..."/>
+                        </div>
+                    </h:panelGroup>
+
+                    <!-- 导航部分-->
+                    <div class="pagination">
+                        <ul>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="First"
+                                        action="#{noteListBean.pageFirst}"
+                                        disabled="#{noteListBean.firstRow eq 0}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Pre"
+                                        action="#{noteListBean.pagePrevious}"
+                                        disabled="#{noteListBean.firstRow eq 0}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Next"
+                                        action="#{noteListBean.pageNext}"
+                                        disabled="#{noteListBean.firstRow + noteListBean.rowsPerPage ge noteListBean.totalRows}"/>
+                            </li>
+                            <li>
+                                <h:commandLink
+                                        styleClass="pagination-link"
+                                        value="Last"
+                                        action="#{noteListBean.pageLast}"
+                                        disabled="#{noteListBean.firstRow + noteListBean.rowsPerPage ge noteListBean.totalRows}"/>
+                            </li>
+                        </ul>
+                        <p>
+                            <h:outputText value="Page #{noteListBean.currentPage} / #{noteListBean.totalPages}"/>
+                        </p>
+                    </div>
+
+                </h:form>
+
+            </div>
+        </div>
+    </div>
+
+</ui:composition>

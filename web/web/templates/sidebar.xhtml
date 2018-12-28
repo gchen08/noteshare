@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+>
+
+    <aside class="col span_1_of_3">
+        <h:form>
+            <!-- siderbar 上方区块 -->
+            <div class="side-post">
+
+                <!-- 游客状态 -->
+                <h:panelGroup rendered="#{userBean.currentUser eq null}">
+                    <div class="side-content">
+                        <p>
+                            欢迎加入NoteShare！
+                        </p>
+                    </div>
+                    <div>
+                        <h:link outcome="/login" value="登录" styleClass="button"/>
+                        <h:link outcome="/register" value="注册" styleClass="button"/>
+                    </div>
+                </h:panelGroup>
+
+                <!-- 登录状态 -->
+                <h:panelGroup rendered="#{userBean.currentUser ne null}">
+                    <div class="side-content">
+                        <p>
+                            欢迎回来，<h:outputLabel value="#{userBean.user.username}"/>！
+                        </p>
+                    </div>
+                    <div>
+                        <h:commandLink
+                                styleClass="button"
+                                value="撰写新的笔记"
+                                action="#{postBean.clearPost}"/>
+                        <h:link outcome="/mynotes" value="查看我的笔记" styleClass="button"/>
+                        <h:commandLink
+                                styleClass="button"
+                                value="登出"
+                                action="#{userBean.logout}"/>
+                    </div>
+                </h:panelGroup>
+            </div>
+
+            <!-- sidebar 下方区块-->
+            <div class="side-post">
+                <div class="side-content-down">
+                    <p>
+                        NoteShare尚处于测试阶段，如遇到任何BUG请及时与管理员联系。
+                    </p>
+                    <p>
+                        管理员邮箱：
+                        <a href="mailto:gchen08@sjtu.edu.cn" style="text-decoration: underline">
+                            gchen08@sjtu.edu.cn
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </h:form>
+    </aside>
+
+</ui:composition>

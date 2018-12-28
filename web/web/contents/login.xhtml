@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:outputStylesheet library="css" name="login.css"/>
+
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+                <!-- 登陆块 -->
+                <div class="login">
+                    <h2 class="login-header">登陆</h2>
+                    <h:form styleClass="login-container">
+
+                        <p>
+                            <h:inputText
+                                    id="username"
+                                    styleClass="login-input-text"
+                                    a:placeholder="Username"
+                                    a:required="true"
+                                    value="#{userBean.user.username}"/>
+                        </p>
+
+                        <p>
+                            <h:inputSecret
+                                    id="password"
+                                    styleClass="login-input-text"
+                                    a:placeholder="Password"
+                                    a:required="true"
+                                    value="#{userBean.user.password}"/>
+                        </p>
+
+                        <h:outputText
+                                style="color: coral"
+                                value="#{userBean.errorMsg}"/>
+                        <p>
+                            <h:commandLink
+                                    styleClass="login-input-submit"
+                                    value="登陆"
+                                    action="#{userBean.login}"/>
+                        </p>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ui:composition>

@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:outputStylesheet library="css" name="comment.css"/>
+
+    <h:panelGroup rendered="#{noteBean.comments.size() ne 0}">
+        <h1 class="comment-title">Comment</h1>
+
+        <h:dataTable value="#{noteBean.comments}" var="comment">
+            <h:column>
+                <div class="comment-content">
+                    <b>#{comment.author.username}</b>
+                    <label class="comment-label">
+                        @ #{comment.formattedPublishTime}
+                    </label>
+                    <p>
+                        <h:outputText
+                                styleClass="pre-formatted"
+                                value="#{comment.content}"
+                        />
+                    </p>
+                </div>
+            </h:column>
+        </h:dataTable>
+    </h:panelGroup>
+
+    <h:panelGroup rendered="#{userBean.currentUser ne null}">
+        <h2 class="comment-title">Your Comment:</h2>
+        <h:form id="comment-form">
+            <h:inputTextarea
+                    styleClass="comment-input-textarea"
+                    value="#{commentBean.content}"/>
+            <h:commandButton
+                    styleClass="comment-input-submit"
+                    value="发表评论"
+                    action="#{commentBean.post}">
+                <f:param name="id" value="#{noteBean.noteId}"/>
+            </h:commandButton>
+        </h:form>
+    </h:panelGroup>
+</ui:composition>

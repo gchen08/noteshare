@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="noteShareUnit" transaction-type="JTA">
+
+        <!-- Glassfish中配置数据源的JNDI -->
+        <jta-data-source>jdbc/MySqlDB</jta-data-source>
+
+        <properties>
+            <!-- EclipseLink should create the database schema automatically -->
+
+            <!-- 禁用weaving -->
+            <property name="eclipselink.weaving" value="false"/>
+
+            <!-- 创建表 如果表存在则扩展字段 -->
+            <property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+            <!-- 输出到database -->
+            <property name="eclipselink.ddl-generation.output-mode" value="database"/>
+
+            <!-- 在log中显示sql语句-->
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+    <div class="container">
+        <div class="section">
+            <div class="col span_2_of_3">
+
+                <h:panelGroup rendered="#{noteBean.canBeDisplayed eq false}">
+                    <div class="note-post">
+                        <p class="note-content">
+                            <h:outputText value="无权访问该页"/>
+                        </p>
+                    </div>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{noteBean.canBeDisplayed}">
+                    <div class="note-post">
+                        <h1 class="note-title">
+                            <h:outputText
+                                    value="#{noteBean.note.title}"/>
+                        </h1>
+                        <h2 class="author">
+                            <h:outputText
+                                    value="Posted by #{noteBean.note.author.username} @ #{noteBean.note.formattedPublishTime}"/>
+                        </h2>
+                        <p class="note-content">
+                            <h:outputText
+                                    styleClass="pre-formatted"
+                                    value="#{noteBean.note.content}"/>
+                        </p>
+                        <div class="note-info">
+                            <h:outputText
+                                    value="浏览数: #{noteBean.note.viewCount}"/>
+                        </div>
+
+                        <h:panelGroup rendered="#{noteBean.note.state eq 1}">
+                            <ui:include src="comments.xhtml"/>
+                        </h:panelGroup>
+                    </div>
+                </h:panelGroup>
+
+            </div>
+        </div>
+    </div>
+</ui:composition>
