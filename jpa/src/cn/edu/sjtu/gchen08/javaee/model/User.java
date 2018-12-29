@@ -1,6 +1,5 @@
 package cn.edu.sjtu.gchen08.javaee.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by Gong on 2018/12/21
@@ -58,8 +59,8 @@ public class User implements Serializable
         发表的笔记
         以author为外键
      */
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Note> notes = new ArrayList<>();
+    @OneToMany(mappedBy = "author", orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Note> notes = new HashSet<>();
 
     /*
         发表的评论
@@ -71,8 +72,7 @@ public class User implements Serializable
 
     public void addNote(Note note)
     {
-        if (!this.notes.contains(note))
-            this.notes.add(note);
+        this.notes.add(note);
     }
 
     public void deleteNote(Note note)
@@ -142,12 +142,12 @@ public class User implements Serializable
         this.level = level;
     }
 
-    public List<Note> getNotes()
+    public Set<Note> getNotes()
     {
         return notes;
     }
 
-    public void setNotes(List<Note> notes)
+    public void setNotes(Set<Note> notes)
     {
         this.notes = notes;
     }

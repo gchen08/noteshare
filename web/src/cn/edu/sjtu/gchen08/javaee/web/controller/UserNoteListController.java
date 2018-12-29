@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class UserNoteListController implements Serializable
 
     private void loadList()
     {
-        List<Note> allNotes = user.getNotes();
+        List<Note> allNotes = new ArrayList<>(user.getNotes());
         allNotes.sort(Comparator.comparing(Note::getPublishTime).reversed());
         totalRows = allNotes.size();
         noteList = allNotes.subList(firstRow, Math.min(totalRows, firstRow + rowsPerPage));

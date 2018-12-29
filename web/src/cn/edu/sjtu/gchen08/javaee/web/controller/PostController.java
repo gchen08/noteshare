@@ -63,6 +63,7 @@ public class PostController implements Serializable
         note.setContent(content);
         note.setPublishTime(new Date());
         note.setState(Byte.valueOf(saveAsDraft ? "0" : "1"));
+        author = (User) Utils.getSession().getAttribute(Constant.CURRENT_USER);
         note.setAuthor(author);
         if (noteId == null)
             note = noteService.save(note);

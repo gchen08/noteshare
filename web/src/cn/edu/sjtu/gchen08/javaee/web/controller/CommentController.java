@@ -56,6 +56,7 @@ public class CommentController
     {
         Comment comment = new Comment();
         comment.setContent(content);
+        author = (User) Utils.getSession().getAttribute(Constant.CURRENT_USER);
         comment.setAuthor(author);
         comment.setNote(note);
         comment.setPublishTime(new Date());

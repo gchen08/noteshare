@@ -56,7 +56,8 @@ public class UserController implements Serializable
         user.setPassword(Utils.getSHA256(user.getPassword())); // 防止明文保存密码
         user.setLevel(Byte.valueOf("1"));
         userService.save(user);
-        Utils.getSession().setAttribute(Constant.CURRENT_USER, user);
+        currentUser = user;
+        Utils.getSession().setAttribute(Constant.CURRENT_USER, currentUser);
         returnUrl = (String) Utils.getSession().getAttribute(Constant.RETURN_URL);
         if (returnUrl != null && returnUrl.startsWith("note"))
         {
@@ -84,7 +85,7 @@ public class UserController implements Serializable
         }
         user = userGet;
         currentUser = user;
-        Utils.getSession().setAttribute(Constant.CURRENT_USER, user);
+        Utils.getSession().setAttribute(Constant.CURRENT_USER, currentUser);
         errorMsg = "";
         returnUrl = (String) Utils.getSession().getAttribute(Constant.RETURN_URL);
         if (returnUrl != null && returnUrl.startsWith("note"))
@@ -130,7 +131,7 @@ public class UserController implements Serializable
             userService.update(user);
             currentUser = null;
             errorMsg = Constant.PASSWORD_CHANGED;
-            return Constant.PAGE_SETTINGS;
+            return Constant.PAGE_LOGIN;
         }
         if (!newEmail.equals(""))
         {
